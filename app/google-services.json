@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "135210316103",
+    "firebase_url": "https://pokedb-9e242.firebaseio.com",
+    "project_id": "pokedb-9e242",
+    "storage_bucket": "pokedb-9e242.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:135210316103:android:33931424d86a531e325c62",
+        "android_client_info": {
+          "package_name": "it.thewalkingthread.dbconstructor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "135210316103-pajpscjlsl5j95nu2ioflu2oka9h49ra.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "it.thewalkingthread.dbconstructor",
+            "certificate_hash": "099df40dd1dfdd2b785fd4001c7b68891f44184e"
+          }
+        },
+        {
+          "client_id": "135210316103-0loqds4fng8usl08tbeg4s8iulm9v2v3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzjiX6-kmcl6LsExuX2sBx8XIB82KxWpo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "135210316103-0loqds4fng8usl08tbeg4s8iulm9v2v3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
