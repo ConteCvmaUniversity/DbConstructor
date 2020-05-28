@@ -54,5 +54,6 @@ public class VolleyPokemon implements Response.ErrorListener, Response.Listener<
     @Override
     public void onResponse(String response) {
         catcher.parseJson(response);
+
     }
 }

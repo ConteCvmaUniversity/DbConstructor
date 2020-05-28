@@ -15,15 +15,16 @@ import it.thewalkingthread.dbconstructor.model.PokeType;
 import it.thewalkingthread.dbconstructor.model.Pokemon;
 
 public class PokemonJson implements JsonCatcher {
-    String name;
-    Pokemon pokemon;
+    private String name;
+    private Pokemon pokemon;
 
+    //corrisponde al pokemon da riempire (dati)
     public PokemonJson(Pokemon pokemon){
         this.pokemon = pokemon;
     }
 
     @Override
-    public void parseJson(String response) {
+    public synchronized void parseJson(String response) {
         Gson gson = new Gson();
         String types;
         try{
@@ -43,10 +44,26 @@ public class PokemonJson implements JsonCatcher {
             }
 
 
-
+            saveOnDb();
         }
         catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public void saveOnDb(){
+        setLocalDb(pokemon);
+        setFirebaseDb(pokemon);
+    }
+
+    private void setFirebaseDb(Pokemon poke) {
+        //TODO funzione che setta il pokemon in Firebase
+
+    }
+
+    private void setLocalDb(Pokemon poke) {
+        //TODO funzione che setta il pokemon locale
+
+
     }
 }

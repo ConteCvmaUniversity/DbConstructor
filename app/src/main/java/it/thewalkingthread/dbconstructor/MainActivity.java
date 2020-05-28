@@ -5,13 +5,12 @@ import it.thewalkingthread.dbconstructor.database.VolleyPokemon;
 import it.thewalkingthread.dbconstructor.model.Pokemon;
 
 import android.os.Bundle;
-import android.util.Log;
 
 
 public class MainActivity extends AppCompatActivity {
     //DatabaseReference reference;
     public static final int NUMPOKE = 807;
-    VolleyPokemon catcher;
+    VolleyPokemon volleyPokemon;
     Pokemon pokemon;
 
     @Override
@@ -26,31 +25,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void setDb(){
+    private synchronized  void setDb(){
         Pokemon poke;
-        catcher = new VolleyPokemon(MainActivity.this);
+        volleyPokemon = new VolleyPokemon(MainActivity.this);
         for (int i = 1 ; i < NUMPOKE;i++){
-            poke = getPokemon(i);
-            setLocalDb(poke);
-            setFirebaseDb(poke);
+
+           getPokemon(i);
         }
 
     }
 
-    private void setFirebaseDb(Pokemon poke) {
-        //TODO funzione che setta il pokemon in Firebase
-    }
 
-    private void setLocalDb(Pokemon poke) {
-        //TODO funzione che setta il pokemon locale
-    }
 
-    private Pokemon getPokemon(int poke){
+    private  void getPokemon(int pokeID){
 
-        Pokemon actualPoke = new Pokemon(poke);
+        Pokemon actualPoke = new Pokemon(pokeID);
         //chiamata a json passo il pokemon da riempire
-        catcher.searchPokemonByID(poke,actualPoke);
-        return actualPoke;//da moificare
+        volleyPokemon.searchPokemonByID(pokeID,actualPoke);
+        //return actualPoke;//da moificare
     }
+
+
 
 }
