@@ -29,7 +29,7 @@ public class VolleyPokemon implements Response.ErrorListener, Response.Listener<
     /* poke is the object to fill*/
     @SuppressLint("DefaultLocale")
     public void searchPokemonByID(int id, Pokemon poke) {
-        catcher = new PokemonJson(poke);
+        catcher = new PokemonJson(poke,context);
         String url = "https://pokeapi.co/api/v2/pokemon/%d/";
         url = String.format(url,id);
         apiCall(url);

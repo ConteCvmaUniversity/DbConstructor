@@ -10,26 +10,18 @@ import androidx.room.Entity;
 import androidx.room.ColumnInfo;
 import androidx.room.PrimaryKey;
 import androidx.room.Relation;
+import it.thewalkingthread.dbconstructor.model.Pokemon;
 
 
 @Entity
 public class PokemonEntity implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name="id")
+    @ColumnInfo(name="pokeId")
     int idPoke;
 
     @ColumnInfo(name="name")
     String name;
-    /*
-    @Embedded
-    List<PokeTypeEntity> types;
-    @Relation(
-            parentColumn = ""
-            entityColumn = ""
-    )
-    List<PokeTypeEntity> pokeTypeEntities;
-    */
 
 
     protected PokemonEntity(Parcel in) {
@@ -60,3 +52,13 @@ public class PokemonEntity implements Parcelable {
         }
     };
 }
+
+/*
+@Entity(primaryKeys = {"poke", "type"})
+class PokemonType {
+    int id;
+    PokeTypeEntity type;
+}
+
+ */
+

@@ -1,5 +1,6 @@
 package it.thewalkingthread.dbconstructor.json;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -11,16 +12,22 @@ import org.json.JSONObject;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import androidx.room.Room;
+import it.thewalkingthread.dbconstructor.database.PokemonDb;
+import it.thewalkingthread.dbconstructor.database.PokemonEntity;
 import it.thewalkingthread.dbconstructor.model.PokeType;
 import it.thewalkingthread.dbconstructor.model.Pokemon;
 
 public class PokemonJson implements JsonCatcher {
     private String name;
     private Pokemon pokemon;
+    private PokemonDb db;
+    private Context context;
 
     //corrisponde al pokemon da riempire (dati)
-    public PokemonJson(Pokemon pokemon){
+    public PokemonJson(Pokemon pokemon,Context context){
         this.pokemon = pokemon;
+        this.context = context;
     }
 
     @Override
@@ -63,7 +70,18 @@ public class PokemonJson implements JsonCatcher {
 
     private void setLocalDb(Pokemon poke) {
         //TODO funzione che setta il pokemon locale
+        createDB();
+        PokemonEntity pokeEntity;
+        db.pokemonDao().insert(pokeEntiy);
 
 
+    }
+
+    private void createDB() {
+        db = Room.databaseBuilder(context,
+                PokemonDb.class,
+                "cocktail.db")
+                .allowMainThreadQueries()
+                .build();
     }
 }
