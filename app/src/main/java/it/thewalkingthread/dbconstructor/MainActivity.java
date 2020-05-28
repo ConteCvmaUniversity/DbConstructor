@@ -19,20 +19,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setDb();
-
+        volleyPokemon = new VolleyPokemon(MainActivity.this);
+        getSimplePokemon();
 
 
     }
 
 
     private synchronized  void setDb(){
-        Pokemon poke;
+        //Pokemon poke;
         volleyPokemon = new VolleyPokemon(MainActivity.this);
+        /*
         for (int i = 1 ; i < NUMPOKE;i++){
+            //poke = getPokemon(i);
            getPokemon(i);
+           //wait
+           //setLocalDb(poke);
+            //setFirebaseDb(poke);
         }
 
+         */
+
+
+    }
+    private void getSimplePokemon(){
+        volleyPokemon.searchAllPokemon();
     }
 
 

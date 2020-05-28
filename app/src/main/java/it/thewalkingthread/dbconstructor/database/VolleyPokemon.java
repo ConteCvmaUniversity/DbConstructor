@@ -14,9 +14,12 @@ import com.android.volley.toolbox.Volley;
 
 import it.thewalkingthread.dbconstructor.json.JsonCatcher;
 import it.thewalkingthread.dbconstructor.json.PokemonJson;
+import it.thewalkingthread.dbconstructor.json.SimpleJson;
 import it.thewalkingthread.dbconstructor.model.Pokemon;
 
 public class VolleyPokemon implements Response.ErrorListener, Response.Listener<String>{
+
+    private static final int NUMPOKE = 807;
     //abstract void setPokemon();
     Context context;
     JsonCatcher catcher;
@@ -32,6 +35,14 @@ public class VolleyPokemon implements Response.ErrorListener, Response.Listener<
         catcher = new PokemonJson(poke,context);
         String url = "https://pokeapi.co/api/v2/pokemon/%d/";
         url = String.format(url,id);
+        apiCall(url);
+    }
+
+    @SuppressLint("DefaultLocale")
+    public void searchAllPokemon(){
+        catcher = new SimpleJson(context);
+        String url = "https://pokeapi.co/api/v2/pokemon?limit=%d";
+        url = String.format(url,NUMPOKE);
         apiCall(url);
     }
 

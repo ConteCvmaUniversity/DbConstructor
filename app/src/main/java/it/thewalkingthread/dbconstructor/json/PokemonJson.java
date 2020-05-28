@@ -100,7 +100,7 @@ public class PokemonJson implements JsonCatcher {
             pokeEntity.setType(pokemon.getTypes().get(i).getName(),i);
         }
 
-        db.pokemonDao().insert(pokeEntity);
+        //db.pokemonDao().insert(pokeEntity);
 
 
     }

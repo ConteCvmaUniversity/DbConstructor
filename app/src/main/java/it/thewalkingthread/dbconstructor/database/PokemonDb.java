@@ -5,9 +5,10 @@ import androidx.room.Database;
 
 import androidx.room.RoomDatabase;
 import it.thewalkingthread.dbconstructor.model.PokeType;
+import it.thewalkingthread.dbconstructor.model.SimplePokemon;
 
 
-@Database(entities = {PokemonEntity.class, PokeType.class}, version = 1)
+@Database(entities = {SimplePokemon.class}, version = 1)
 public abstract class PokemonDb extends RoomDatabase {
-    public abstract PokemonDao pokemonDao();
+    public abstract SimplePokemonDao simplePokemonDao();
 }
