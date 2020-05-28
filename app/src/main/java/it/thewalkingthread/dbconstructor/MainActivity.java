@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
     //DatabaseReference reference;
     public static final int NUMPOKE = 807;
     VolleyPokemon volleyPokemon;
-    Pokemon pokemon;
+    //Pokemon pokemon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
