@@ -17,6 +17,7 @@ import it.thewalkingthread.dbconstructor.database.PokemonDb;
 import it.thewalkingthread.dbconstructor.database.PokemonEntity;
 import it.thewalkingthread.dbconstructor.model.PokeType;
 import it.thewalkingthread.dbconstructor.model.Pokemon;
+import it.thewalkingthread.dbconstructor.model.TypeReturned;
 
 public class PokemonJson implements JsonCatcher {
     private String name;
@@ -41,17 +42,37 @@ public class PokemonJson implements JsonCatcher {
             Log.w("CATCH", "PokeName:" + name);
             pokemon.setName(name);
             types = jsonObject.getJSONArray("types").toString();
-            Type listType = new TypeToken<List<PokeType>>() {
+            Type listType = new TypeToken<List<TypeReturned>>() {
             }.getType();
-            List<PokeType> lt = gson.fromJson(types,listType);
+            //non funziona non recupera type
+            List<TypeReturned> lt = gson.fromJson(types,listType);
+
 
             if (lt != null && lt.size() > 0){
                 Log.w("CATCH", "PokeType num:" + lt.size());
-                pokemon.setTypes(lt);
+                //pokemon.setTypes(lt);
+                for(int i=0;i < lt.size();i++){
+                    //try {
+                        String app = "da vedere ora non funziona from";
+                        PokeType tp = gson.fromJson(app,PokeType.class);
+                        if (tp != null){
+                            pokemon.setType(tp,lt.get(i).getSlot());
+                        }
+
+                    /*
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                     */
+                }
+
+                saveOnDb();
+
             }
 
 
-            saveOnDb();
+
         }
         catch (JSONException e) {
             e.printStackTrace();
@@ -71,14 +92,21 @@ public class PokemonJson implements JsonCatcher {
     private void setLocalDb(Pokemon poke) {
         //TODO funzione che setta il pokemon locale
         createDB();
-        PokemonEntity pokeEntity;
-        db.pokemonDao().insert(pokeEntiy);
+        //creo l'entità pokemon
+        PokemonEntity pokeEntity = new PokemonEntity();
+        pokeEntity.setIdPoke(pokemon.getId());
+        pokeEntity.setName(pokemon.getName());
+        for (int i=0 ; i < pokemon.getTypes().size();i++){
+            pokeEntity.setType(pokemon.getTypes().get(i).getName(),i);
+        }
+
+        db.pokemonDao().insert(pokeEntity);
 
 
     }
 
     private void createDB() {
-        db = Room.databaseBuilder(context,
+        db = Room.databaseBuilder(context.getApplicationContext(),
                 PokemonDb.class,
                 "cocktail.db")
                 .allowMainThreadQueries()

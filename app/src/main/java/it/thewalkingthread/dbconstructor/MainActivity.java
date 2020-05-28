@@ -9,7 +9,8 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
     //DatabaseReference reference;
-    public static final int NUMPOKE = 807;
+    //public static final int NUMPOKE = 807;
+    public static final int NUMPOKE = 2;
     VolleyPokemon volleyPokemon;
     //Pokemon pokemon;
 
@@ -29,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         Pokemon poke;
         volleyPokemon = new VolleyPokemon(MainActivity.this);
         for (int i = 1 ; i < NUMPOKE;i++){
-
            getPokemon(i);
         }
 
