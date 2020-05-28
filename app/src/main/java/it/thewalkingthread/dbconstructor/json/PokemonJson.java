@@ -30,8 +30,8 @@ public class PokemonJson implements JsonCatcher {
             JSONObject jsonObject = new JSONObject(response);
             //TODO all parse
             name = jsonObject.getString("name");
+            Log.w("CATCH", "PokeName:" + name);
             pokemon.setName(name);
-
             types = jsonObject.getJSONArray("types").toString();
             Type listType = new TypeToken<List<PokeType>>() {
             }.getType();
