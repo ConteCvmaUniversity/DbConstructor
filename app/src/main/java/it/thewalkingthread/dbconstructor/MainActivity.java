@@ -1,6 +1,7 @@
 package it.thewalkingthread.dbconstructor;
 
 import androidx.appcompat.app.AppCompatActivity;
+import it.thewalkingthread.dbconstructor.database.VolleyPokemon;
 import it.thewalkingthread.dbconstructor.model.Pokemon;
 
 import android.os.Bundle;
@@ -10,19 +11,23 @@ import android.os.Bundle;
 public class MainActivity extends AppCompatActivity {
     //DatabaseReference reference;
     public static final int NUMPOKE = 807;
+    VolleyPokemon catcher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setDb();
-
+        //setDb();
+        Pokemon pokemon = getPokemon(1);
+        
         // prova Ale 09:03
 
     }
 
     private void setDb(){
         Pokemon poke;
+        catcher = new VolleyPokemon(MainActivity.this);
         for (int i = 1 ; i < NUMPOKE;i++){
             poke = getPokemon(i);
             setLocalDb(poke);
@@ -40,10 +45,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Pokemon getPokemon(int poke){
-        //TODO funzione che chiama pokeApi
 
-        //chiamata a json
-        return null;//da moificare
+        Pokemon actualPoke = new Pokemon(poke);
+        //chiamata a json passo il pokemon da riempire
+        catcher.searchPokemonByID(poke,actualPoke);
+        return actualPoke;//da moificare
     }
 
 }

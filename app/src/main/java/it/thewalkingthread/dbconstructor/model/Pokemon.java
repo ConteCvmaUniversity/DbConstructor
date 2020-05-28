@@ -8,6 +8,10 @@ public class Pokemon {
     String name;
     List<PokeType> types;
 
+    public Pokemon(int id){
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
